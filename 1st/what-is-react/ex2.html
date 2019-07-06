@@ -1,0 +1,75 @@
+<!-- ex2.html : 고전 프론트엔드 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      #root p {
+        color: white;
+        font-size: 20px;
+        background-color: green;
+        text-align: center;
+        width: 200px;
+      }
+
+      #btn_plus {
+        background-color: red;
+        border: 2px solid #000000;
+        font-size: 15px;
+        width: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <button id="btn_plus">+</button>
+
+    <script type="text/javascript">
+      // const root = document.querySelector("#root");
+      // const btn_plus = document.querySelector("#btn_plus");
+
+      // let i = 0;
+
+      // root.innerHTML = `<p>init : 0</p>`;
+
+      // btn_plus.addEventListener("click", () => {
+      //   root.innerHTML = `<p>init : ${++i}</p>`;
+      // });
+
+      // react 라이브러리가 하는 일
+      const component = {
+        message: "init",
+        count: 0,
+        render() {
+          return `<p>${this.message} : ${this.count}</p>`;
+        }
+      };
+
+      // react-dom 라이브러리가 하는 일
+      function render(dom, component) {
+        // 컴포넌트를 render 하고, DOM 에 그려준다.
+        root.innerHTML = component.render();
+      }
+
+      render(document.querySelector("#root"), component);
+
+      document.querySelector("#btn_plus").addEventListener("click", () => {
+        // 외부에서 컴포넌트의 값을 변경하는 행위
+        component.message = "update";
+        component.count = component.count + 1;
+
+        render(document.querySelector("#root"), component);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!-- ex4.html : React 로 컴포넌트를 만들고, 실제 DOM 에 그린다. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      #root p {
+        color: white;
+        font-size: 20px;
+        background-color: green;
+        text-align: center;
+        width: 200px;
+      }
+
+      #btn_plus {
+        background-color: red;
+        border: 2px solid #000000;
+        font-size: 15px;
+        width: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <button id="btn_plus">+</button>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript">
+      //   // react 라이브러리가 하는 일
+      //   const component = {
+      //     children: "init",
+      //     count: 0,
+      //     render() {
+      //       return `<p>${this.children} : ${this.count}</p>`;
+      //     }
+      //   };
+
+      React.createElement("div");
+
+      const Component = props => {
+        return React.createElement("p", null, `${props.message} ${props.count}`);
+      };
+      //   // react-dom 라이브러리가 하는 일
+      //   function render(dom, component) {
+      //     // 컴포넌트를 render 하고, DOM 에 그려준다.
+      //     root.innerHTML = component.render();
+      //   }
+
+      //   render(document.querySelector("#root"), component);
+
+      let i = 0;
+
+      ReactDOM.render(
+        React.createElement(Component, { message: "init", count: i }, null),
+        document.querySelector("#root")
+      );
+
+      //   document.querySelector("#btn_plus").addEventListener("click", () => {
+      //     // 외부에서 컴포넌트의 값을 변경하는 행위
+      //     component.children = "update";
+      //     component.count = component.count + 1;
+
+      //     render(document.querySelector("#root"), component);
+      //   });
+
+      document.querySelector("#btn_plus").addEventListener("click", () => {
+        i++;
+        ReactDOM.render(
+          React.createElement(Component, { message: "update", count: i }, null),
+          document.querySelector("#root")
+        );
+      });
+    </script>
+  </body>
+</html>
