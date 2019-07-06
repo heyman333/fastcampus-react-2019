@@ -1,0 +1,48 @@
+<!-- ex8.html : 클래스로 리액트 컴포넌트 만들기 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      class Component extends React.Component {
+        static defaultProps = {
+          message: "디폴트"
+        };
+
+        constructor(props) {
+          super(props);
+          this.state = {
+            count: 0
+          };
+        }
+
+        countUp = e => {
+          this.setState(prevState => ({ count: prevState.count + 1 }));
+        };
+
+        render() {
+          return (
+            <div>
+              <button onClick={this.countUp}>Count up!</button>
+              <h1>{this.props.message} 이것은 클래스를 상속하여 만든 컴포넌트 입니다.</h1>
+              <p>count는 {this.state.count} 입니다.</p>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Component message="안녕하세요!!!" />, document.querySelector("#root"));
+    </script>
+  </body>
+</html>
