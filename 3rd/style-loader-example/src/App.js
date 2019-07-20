@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import styles from "./App.module.scss"; //scss로더를 처리 한뒤에 css-loader를 실행
+import Button from "./components/Button";
 
 function App() {
   return (
@@ -10,14 +11,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className={styles.link}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Button>Learn React</Button>
       </header>
     </div>
   );
