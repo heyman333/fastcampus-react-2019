@@ -9,7 +9,7 @@ const StyledButton = styled.button`
   padding: 0.25em 1em;
 
   &.orange {
-    border: 2px solid blue;
+    border: 2px solid lime;
   }
 `;
 
